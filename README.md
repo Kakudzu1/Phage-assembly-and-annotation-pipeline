@@ -41,11 +41,19 @@ snakemake ... --config threads=NUM_THREADS
 ## Phage assembly with MEGAHIT
 
 ### Requirments
-- seqtk
-- MEGAHIT
-- Checkv
+- [seqtk]
+- [MEGAHIT]
+- [Checkv]
 
-To download CheckV database
+To download CheckV database choose version [here](https://portal.nersc.gov/CheckV/) and download it. Then extract and set the environment variable:
+```
+# Extract the database
+tar -xvzf CHECKV_VERSION.tar.gz
+
+# Set CHECKVDB environment variable (replace PATH/TO/DATABASE with your actual path)
+echo 'export CHECKVDB=PATH/TO/DATABASE' >> ~/.bashrc
+source ~/.bashrc
+```
 
 ### Running the pipeline
 ```
@@ -53,7 +61,47 @@ snakemake --snakefile ./pipelines/megahit_assembly.smk \
     --directory /PATH/TO/WORKING/DIRECTORY \
     --config samples=/PATH/TO/SAMPLE/FILE \
     --use-conda \
-    --cores 8
+    --cores N
 ```
+
+## Postprocessing
+
+### Requirments
+- [bwa]
+- [samtools]
+- [jgi_summarize_bam_contig_depths] 
+- [cobra-meta]
+
+### Running the pipeline
+```
+snakemake --snakefile ./pipelines/cobra_pipeline.smk \
+    --directory /PATH/TO/WORKING/DIRECTORY \
+    --config samples=/PATH/TO/SAMPLE/FILE assembler=megahit \
+    --use-conda \
+    --cores N
+```
+
+## Annotation
+
+### Requirments
+- [pharokka]
+- [phold]
+- [clinker]
+
+Please, install pharokka database running:
+```
+install_databases.py -o /PATH/TO/DATABASE/DIR
+```
+
+### Running the pipeline
+```
+snakemake --snakefile ./pipelines/annotation.smk
+    --directory /PATH/TO/WORKING/DIRECTORY \
+    --config samples=/PATH/TO/SAMPLE/FILE prefix=CLINKER_PREFIX_NAME \
+    --use-conda \
+    --cores N
+```
+
+
 
 
