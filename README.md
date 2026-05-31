@@ -1,5 +1,5 @@
 # Phage-assembly-and-annotation-pipeline
----
+
 Snakemake pipeline for phage assembly using MEGAHIT, COBRA and annotation with Pharokka/Phold
 
 **Pipeline contains following sections:**
@@ -39,7 +39,7 @@ Use the threads option to set the number of threads
 snakemake ... --config threads=NUM_THREADS
 ```
 ## Phage assembly with MEGAHIT
----
+
 ### Requirments
 - seqtk
 - MEGAHIT
