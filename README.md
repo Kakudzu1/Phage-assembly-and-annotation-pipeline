@@ -3,7 +3,7 @@
 Snakemake pipeline for phage assembly using MEGAHIT, COBRA and annotation with Pharokka/Phold
 
 **Pipeline contains following sections:**
-- [Phage assembly with MEGAHIT]
+- [Phage assembly with MEGAHIT](https://github.com/Kakudzu1/Phage-assembly-and-annotation-pipeline/blob/main/README.md#phage-assembly-with-megahit)
 - [Postprocessing]
 - [Annotation]
 
