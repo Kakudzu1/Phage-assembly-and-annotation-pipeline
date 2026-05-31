@@ -1,5 +1,11 @@
 # Phage-assembly-and-annotation-pipeline
+---
 Snakemake pipeline for phage assembly using MEGAHIT, COBRA and annotation with Pharokka/Phold
+
+**Pipeline contains following sections:**
+- [Phage assembly with MEGAHIT]
+- [Postprocessing]
+- [Annotation]
 
 ## Usage
 
@@ -32,3 +38,22 @@ Use the threads option to set the number of threads
 ```
 snakemake ... --config threads=NUM_THREADS
 ```
+## Phage assembly with MEGAHIT
+---
+### Requirments
+- seqtk
+- MEGAHIT
+- Checkv
+
+To download CheckV database
+
+### Running the pipeline
+```
+snakemake --snakefile ./pipelines/megahit_assembly.smk \
+    --directory /PATH/TO/WORKING/DIRECTORY \
+    --config samples=/PATH/TO/SAMPLE/FILE \
+    --use-conda \
+    --cores 8
+```
+
+
