@@ -24,8 +24,6 @@ rule all:
         expand('{sample}/MEGAHIT/{sample}.fasta', sample=samples)
 
 rule seqtk:
-    conda:
-        "/home/lanskaya/miniconda3/envs/assembly"
     input:
         r1 = '{sample}/reads/{sample}_filtered_R1.fq.gz',
         r2 = '{sample}/reads/{sample}_filtered_R2.fq.gz'
@@ -39,8 +37,6 @@ rule seqtk:
         'seqtk sample -s42 {input.r2} {params.sample_size} | gzip > {output.r2}'
 
 rule megahit:
-    conda:
-        "/home/lanskaya/miniconda3/envs/megahit"
     input:
         r1 = '{sample}/reads/{sample}_sampled_R1.fq.gz',
         r2 = '{sample}/reads/{sample}_sampled_R2.fq.gz'
@@ -50,8 +46,6 @@ rule megahit:
         'megahit -1 {input.r1} -2 {input.r2} -o {wildcards.sample}/MEGAHIT'
 
 rule checkv:
-    conda:
-        "/home/lanskaya/miniconda3/envs/assembly"
     input:
         '{sample}/MEGAHIT/final.contigs.fa'
     output:
