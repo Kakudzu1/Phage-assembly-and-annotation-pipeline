@@ -41,9 +41,9 @@ snakemake ... --config threads=NUM_THREADS
 ## Phage assembly with MEGAHIT
 
 ### Requirments
-- [seqtk]
-- [MEGAHIT]
-- [Checkv]
+- [seqtk](https://github.com/lh3/seqtk)
+- [MEGAHIT](https://github.com/voutcn/MEGAHIT)
+- [Checkv](https://pypi.org/project/checkv/)
 
 To download CheckV database choose version [here](https://portal.nersc.gov/CheckV/) and download it. Then extract and set the environment variable:
 ```
@@ -67,7 +67,7 @@ snakemake --snakefile ./pipelines/megahit_assembly.smk \
 ## Postprocessing
 
 ### Requirments
-- [bwa]
+- [bwa](https://github.com/lh3/BWA)
 - [samtools]
 - [jgi_summarize_bam_contig_depths] 
 - [cobra-meta]
